@@ -17,6 +17,8 @@
  * Configure paths required to find CakePHP + general filepath constants
  */
 require __DIR__ . '/paths.php';
+// Load Composer autoload.
+require APP . '/Vendor/autoload.php';
 
 /*
  * Bootstrap CakePHP.
@@ -43,6 +45,9 @@ use Cake\Mailer\Email;
 use Cake\Mailer\TransportFactory;
 use Cake\Utility\Inflector;
 use Cake\Utility\Security;
+
+spl_autoload_unregister(array('App', 'load'));
+spl_autoload_register(array('App', 'load'), true, true);
 
 /**
  * Uncomment block of code below if you want to use `.env` file during development.
